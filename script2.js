@@ -60,5 +60,6 @@ function setupGrid(size) {
 
 window.onload = () => {
   setupGrid(16);
+  updateSizeValue(16)
 }
 
