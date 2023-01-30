@@ -1,35 +1,87 @@
-function makeField() {
-  var sketchField = document.getElementById("grid");
-  let numOfSquares = 30;
-  for (let i = 0; i < numOfSquares; i++) {
-    let squareRow = document.createElement("div");
-    squareRow.classList.add("squareRow");
-    for (let j = 0; j < numOfSquares; j++) {
-      let square = document.createElement("div");
-      square.classList.add("square");
-      gridElement.addEventListener("mouseover", changeColor);
-      gridElement.addEventListener("mousedown", changeColor);
-      let size = 960 / numOfSquares;
-      square.style.width = `${size}px`;
-      square.style.height = `${size}px`;
-      squareRow.appendChild(square);
-    }
-    sketchField.appendChild(squareRow);
+const grid = document.getElementById("grid");
+let size = 16;
+let color = "black";
+let drawMode = "color";
+let mouseDown = false;
+document.body.onmousedown = function () {
+  mouseDown = true;
+  console.log("click on");
+};
+document.body.onmouseup = function () {
+  mouseDown = false;
+  console.log("click off");
+};
+
+const colorPicker = document.getElementById("colorPicker");
+const sizeValue = document.getElementById("sizeValue");
+const sizeSlider = document.getElementById("sizeSlider");
+const clearButton = document.getElementById("clear");
+const eraserButton = document.getElementById("eraser");
+colorPicker.oninput = (e) => setColor(e.target.value);
+sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
+sizeSlider.onchange = (e) => changeSize(e.target.value);
+clearButton.onclick = (e) => clearGrid();
+eraserButton.onclick = (e) => {
+  if (drawMode === "color") {
+    drawMode = "eraser";
+    setColor("white");
+    eraserButton.style.backgroundColor = "white";
+    eraserButton.style.color = "black";
+  } else if (drawMode === "eraser") {
+    drawMode = "color";
+    eraserButton.style.backgroundColor = "black";
+    eraserButton.style.color = "white";
+    setColor(colorPicker.value);
+  }
+};
+
+function setColor(newColor) {
+  color = newColor;
+}
+
+function changeSize(newSize) {
+  size = newSize;
+  grid.innerHTML = "";
+  setupGrid(size);
+}
+
+function clearGrid() {
+  grid.innerHTML = "";
+  setupGrid(size);
+}
+
+function updateSizeValue(sizeValueText) {
+  sizeValue.innerHTML = `${sizeValueText} x ${sizeValueText}`;
+}
+
+function changeColor(e) {
+  console.log("drawing");
+  if (e.type === "mouseover" && !mouseDown) return;
+  else if (drawMode === "color") {
+    console.log("draw");
+    e.target.style.backgroundColor = color;
+  } else if (drawMode === "eraser") {
+    console.log("erasing");
+    e.target.style.backgroundColor = "#fefefe";
   }
 }
 
-function draw() {
-  Array.from(document.getElementsByClassName("square")).forEach((square) => {
-    square.addEventListener("mouseover", function () {
-      if (mouseDown) {
-        square.style.backgroundColor = "black";
-      }
-    });
-  });
+function setupGrid(size) {
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  for (let i = 0; i < size * size; i++) {
+    const square = document.createElement("div");
+    square.classList.add("square");
+    square.addEventListener("mouseover", changeColor);
+    square.addEventListener("mousedown", changeColor);
+    grid.appendChild(square);
+  }
 }
 
-let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
-makeField();
-draw();
+
+  setupGrid(16);
+  updateSizeValue(16);
+
+
+
+

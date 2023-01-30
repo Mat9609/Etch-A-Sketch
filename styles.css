@@ -1,16 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Martian+Mono&display=swap");
 
 * {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-
 }
 
 body {
   background-color: #010a01;
   background-image: url("images/vecteezy_empty-brick-wall-with-blue-and-pink-neon-light_2317574.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:auto;
 }
 
 html {
@@ -97,7 +96,7 @@ h2 {
   margin: 10px;
 }
 
-h3 {
+footer {
   font-family: "Martian Mono", monospace;
   font-size: 3em;
   color: #fff;
@@ -110,9 +109,6 @@ h3 {
   0 0 100px rgb(12, 128, 235),
   0 0 150px rgb(12, 128, 235);
   text-align: center;
-  position: fixed;
-  bottom: 0px;
-  padding: 10px;
   animation: pulsateFooter 0.11s ease-in-out infinite alternate;
 }
 
@@ -187,12 +183,13 @@ h3 {
   width: 960px;
   height: 960px;
   background-color: white;
-  border-radius: 50px;
   border: none;
 }
 
 .square {
   user-select: none;
+  margin: 0;
+  border: 1px solid lightgrey;
 }
 
 #colorPicker {
@@ -249,109 +246,154 @@ h3 {
   box-shadow: -407px 0 0 400px #090909;
 }
 
+/* MEDIA QUERIES */
 
-
-/* Small devices (landscape phones, 576px and up) */
-
-@media (max-width: 576px) {
-  h1 {
-    font-size: 5em;
-  }
+@media (max-width: 1200px) {
   #grid {
     width: 200px;
     height: 200px;
   }
+
+  h1 {
+    font-size: 70px;
+  }
   h2 {
-    font-size: 1em;
-    padding: 5px;
-    margin: 5px;
+    font-size: 35px;
+    margin: 0;
+    padding: 2px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  #colorPicker {
+    width: 80px;
+    height: 80px;
+  }
+  #sizeValue {
+    font-size: 20px;
   }
   #sizeSlider {
     width: 200px;
-  }
-  #sizeValue {
-    font-size: 1em;
+    height: 15px;
   }
   #clear, #eraser {
-    font-size: 1em;
-    font-family: "Martian Mono", monospace;
+  font-size: 30px;
+  height: 40px;
+  }
+  #grid {
+    width: 550px;
+    height: 550px;
+  }
+  body {
+    background-repeat: repeat;
+    background-size: cover;
+  }
+  footer {
+    font-size: 10px;
+    padding: 0px;
+    animation: pulsateFooter 0.11s ease-in-out infinite alternate;
+    width: 500px;
+    margin: 0 auto;
+  }
+
+}
+
+@media (max-width: 850px) {
+  #grid {
+    width: 200px;
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 70px;
+  }
+  h2 {
+    font-size: 35px;
+    margin: 0;
+    padding: 2px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  #colorPicker {
+    width: 80px;
+    height: 80px;
+  }
+  #sizeValue {
+    font-size: 20px;
+  }
+  #sizeSlider {
+    width: 200px;
+    height: 15px;
+  }
+  #clear, #eraser {
+  font-size: 30px;
+  height: 40px;
   }
   #drawZone {
     flex-direction: column;
   }
-  h3 {
-    font-size: 1em;
-    padding: 5px;
-    margin: 5px;
+  #grid {
+    width: 550px;
+    height: 550px;
+  }
+  body {
+    background-repeat: repeat;
+    background-size: cover;
+  }
+  footer {
+    font-size: 10px;
+    padding: 0px;
+    animation: pulsateFooter 0.11s ease-in-out infinite alternate;
+    width: 500px;
+    margin: 0 auto;
   }
 }
 
-/* Small devices (landscape phones, 576px and up) */
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 5em;
-  }
+@media (max-width: 650px) {
   #grid {
-    width: 500px;
-    height: 500px;
+    width: 200px;
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 30px;
   }
   h2 {
-    font-size: 1em;
-    padding: 5px;
-    margin: 5px;
+    font-size: 20px;
+    margin: 0;
+    padding: 2px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  #colorPicker {
+    width: 50px;
+    height: 50px;
+  }
+  #sizeValue {
+    font-size: 20px;
   }
   #sizeSlider {
     width: 200px;
-  }
-  #sizeValue {
-    font-size: 1em;
+    height: 15px;
   }
   #clear, #eraser {
-    font-size: 1em;
-    font-family: "Martian Mono", monospace;
+  font-size: 20px;
+  height: 30px;
   }
   #drawZone {
     flex-direction: column;
   }
-  h3 {
-    font-size: 1em;
-    padding: 5px;
-    margin: 5px;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-
-@media (max-width: 992px) {
-  h1 {
-    font-size: 7em;
-  }
   #grid {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
   }
-  h2 {
-    font-size: 1em;
-    padding: 5px;
-    margin: 5px;
-  }
-  #sizeSlider {
-    width: 200px;
-  }
-  #sizeValue {
-    font-size: 1em;
-  }
-  #clear, #eraser {
-    font-size: 1em;
-    font-family: "Martian Mono", monospace;
-  }
-  #drawZone {
-    flex-direction: column;
-  }
-  h3 {
-    font-size: 1em;
-    padding: 5px;
-    margin: 5px;
+  footer {
+    font-size: 10px;
+    padding: 0px;
+    animation: pulsateFooter 0.11s ease-in-out infinite alternate;
+    width: 300px;
+    margin: 0 auto;
   }
 }
