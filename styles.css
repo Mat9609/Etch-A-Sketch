@@ -9,7 +9,7 @@ body {
   background-color: #010a01;
   background-image: url("images/vecteezy_empty-brick-wall-with-blue-and-pink-neon-light_2317574.jpg");
   background-repeat: no-repeat;
-  background-size:auto;
+  background-size:cover;
 }
 
 html {
