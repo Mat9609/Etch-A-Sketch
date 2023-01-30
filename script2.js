@@ -1,7 +1,7 @@
 const grid = document.getElementById("grid");
 let size = 16;
 let color = "black";
-let drawMode = "draw";
+let drawMode = "color";
 let mouseDown = false;
 document.body.onmousedown = function () {
   mouseDown = true;
@@ -9,14 +9,31 @@ document.body.onmousedown = function () {
 document.body.onmouseup = function () {
   mouseDown = false;
 };
-document.getElementById("colorPicker").oninput = (e) =>
-  setColor(e.target.value);
+
+const colorPicker = document.getElementById("colorPicker");
 const sizeValue = document.getElementById("sizeValue");
 const sizeSlider = document.getElementById("sizeSlider");
 const clearButton = document.getElementById("clear");
+const eraserButton = document.getElementById("eraser");
+colorPicker.oninput = (e) => setColor(e.target.value);
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => changeSize(e.target.value);
-clearButton.onclick = (e) => clearGrid();
+clearButton.onclick = (e) => {
+  clearGrid();
+};
+eraserButton.onclick = (e) => {
+  if (drawMode === "color") {
+    drawMode = "eraser";
+    setColor("white");
+    eraserButton.style.backgroundColor = "white";
+    eraserButton.style.color = "black";
+  } else if (drawMode === "eraser") {
+    drawMode = "color";
+    eraserButton.style.backgroundColor = "black";
+    eraserButton.style.color = "white";
+    setColor(colorPicker.value);
+  }
+};
 
 function setColor(newColor) {
   color = newColor;
@@ -39,9 +56,9 @@ function updateSizeValue(sizeValueText) {
 
 function changeColor(e) {
   if (e.type === "mouseover" && !mouseDown) return;
-  else if (drawMode === "draw") {
+  else if (drawMode === "color") {
     e.target.style.backgroundColor = color;
-  } else if (currentMode === "eraser") {
+  } else if (drawMode === "eraser") {
     e.target.style.backgroundColor = "#fefefe";
   }
 }
@@ -60,6 +77,8 @@ function setupGrid(size) {
 
 window.onload = () => {
   setupGrid(16);
-  updateSizeValue(16)
-}
+  updateSizeValue(16);
+};
+
+
 
